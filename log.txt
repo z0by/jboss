@@ -1,0 +1,58 @@
+[2015-10-20T01:24:50+03:00] INFO: Forking chef instance to converge...
+[2015-10-20T01:24:50+03:00] INFO: *** Chef 12.5.1 ***
+[2015-10-20T01:24:50+03:00] INFO: Chef-client pid: 2553
+[2015-10-20T01:24:52+03:00] WARN: Run List override has been provided.
+[2015-10-20T01:24:52+03:00] WARN: Original Run List: []
+[2015-10-20T01:24:52+03:00] WARN: Overridden Run List: [recipe[jboss]]
+[2015-10-20T01:24:52+03:00] INFO: Run List is [recipe[jboss]]
+[2015-10-20T01:24:52+03:00] INFO: Run List expands to [jboss]
+[2015-10-20T01:24:52+03:00] INFO: Starting Chef Run for test.vova-support.of.by
+[2015-10-20T01:24:52+03:00] INFO: Running start handlers
+[2015-10-20T01:24:52+03:00] INFO: Start handlers complete.
+[2015-10-20T01:24:52+03:00] INFO: Processing apt_package[openjdk-7-jdk] action install (java::openjdk line 46)
+[2015-10-20T01:24:52+03:00] INFO: Processing java_alternatives[set-java-alternatives] action set (java::openjdk line 52)
+[2015-10-20T01:24:56+03:00] INFO: Processing link[/usr/lib/jvm/default-java] action create (java::default_java_symlink line 16)
+[2015-10-20T01:24:56+03:00] INFO: Processing ruby_block[set-env-java-home] action run (java::set_java_home line 19)
+[2015-10-20T01:24:56+03:00] INFO: ruby_block[set-env-java-home] called
+[2015-10-20T01:24:56+03:00] INFO: Processing directory[/etc/profile.d] action create (java::set_java_home line 26)
+[2015-10-20T01:24:56+03:00] INFO: Processing file[/etc/profile.d/jdk.sh] action create (java::set_java_home line 30)
+[2015-10-20T01:24:56+03:00] INFO: Processing user[jboss] action create (jboss::default line 18)
+[2015-10-20T01:24:56+03:00] INFO: Processing remote_file[/tmp/jboss-as-7.1.1.Final.tar.gz] action create (jboss::default line 25)
+[2015-10-20T01:25:05+03:00] INFO: remote_file[/tmp/jboss-as-7.1.1.Final.tar.gz] created file /tmp/jboss-as-7.1.1.Final.tar.gz
+[2015-10-20T01:25:07+03:00] INFO: remote_file[/tmp/jboss-as-7.1.1.Final.tar.gz] updated file contents /tmp/jboss-as-7.1.1.Final.tar.gz
+[2015-10-20T01:25:07+03:00] INFO: remote_file[/tmp/jboss-as-7.1.1.Final.tar.gz] sending run action to bash[install_program] (immediate)
+[2015-10-20T01:25:07+03:00] INFO: Processing bash[install_program] action run (jboss::default line 30)
+[2015-10-20T01:25:09+03:00] INFO: bash[install_program] ran successfully
+[2015-10-20T01:25:09+03:00] INFO: Processing bash[install_program] action nothing (jboss::default line 30)
+[2015-10-20T01:25:09+03:00] INFO: Processing template[/etc/init.d/jboss] action create (jboss::default line 44)
+[2015-10-20T01:25:09+03:00] INFO: Processing service[jboss] action restart (jboss::default line 55)
+[2015-10-20T01:25:10+03:00] INFO: service[jboss] restarted
+[2015-10-20T01:25:10+03:00] INFO: Chef Run complete in 18.043093721 seconds
+[2015-10-20T01:25:10+03:00] INFO: Skipping removal of unused files from the cache
+[2015-10-20T01:25:10+03:00] INFO: Running report handlers
+[2015-10-20T01:25:10+03:00] INFO: Report handlers complete
+[2015-10-20T01:25:49+03:00] INFO: Forking chef instance to converge...
+[2015-10-20T01:25:49+03:00] INFO: *** Chef 12.5.1 ***
+[2015-10-20T01:25:49+03:00] INFO: Chef-client pid: 3402
+[2015-10-20T01:25:52+03:00] WARN: Run List override has been provided.
+[2015-10-20T01:25:52+03:00] WARN: Original Run List: []
+[2015-10-20T01:25:52+03:00] WARN: Overridden Run List: [recipe[jboss::deployapp]]
+[2015-10-20T01:25:52+03:00] INFO: Run List is [recipe[jboss::deployapp]]
+[2015-10-20T01:25:52+03:00] INFO: Run List expands to [jboss::deployapp]
+[2015-10-20T01:25:52+03:00] INFO: Starting Chef Run for test.vova-support.of.by
+[2015-10-20T01:25:52+03:00] INFO: Running start handlers
+[2015-10-20T01:25:52+03:00] INFO: Start handlers complete.
+["/usr/local/share/jboss/standalone/deployments/testweb.war", "testweb.war", "testweb"]
+[2015-10-20T01:25:52+03:00] INFO: Processing remote_file[/tmp/testweb.zip] action create (jboss::deployapp line 15)
+[2015-10-20T01:25:52+03:00] INFO: remote_file[/tmp/testweb.zip] created file /tmp/testweb.zip
+[2015-10-20T01:25:52+03:00] INFO: remote_file[/tmp/testweb.zip] updated file contents /tmp/testweb.zip
+[2015-10-20T01:25:52+03:00] INFO: remote_file[/tmp/testweb.zip] sending run action to bash[put_program] (immediate)
+[2015-10-20T01:25:52+03:00] INFO: Processing bash[put_program] action run (jboss::deployapp line 20)
+[2015-10-20T01:25:52+03:00] INFO: bash[put_program] ran successfully
+[2015-10-20T01:25:52+03:00] INFO: Processing bash[put_program] action nothing (jboss::deployapp line 20)
+[2015-10-20T01:25:52+03:00] INFO: Processing service[jboss] action restart (jboss::deployapp line 34)
+[2015-10-20T01:25:53+03:00] INFO: service[jboss] restarted
+[2015-10-20T01:25:53+03:00] INFO: Chef Run complete in 1.880254739 seconds
+[2015-10-20T01:25:53+03:00] INFO: Skipping removal of unused files from the cache
+[2015-10-20T01:25:53+03:00] INFO: Running report handlers
+[2015-10-20T01:25:53+03:00] INFO: Report handlers complete

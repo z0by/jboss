@@ -1,0 +1,67 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          jboss-as
+# Required-Start:    $local_fs $remote_fs $network $syslog
+# Required-Stop:     $local_fs $remote_fs $network $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start/Stop JBoss
+### END INIT INFO
+
+NAME="jboss"
+DESC="Jboss server"
+JBOSS_USER=<%= @jboss_user %>
+JBOSS_DIR=<%= @jboss_home %>
+
+. /lib/lsb/init-functions
+
+start() {
+    log_begin_msg "Starting $DESC: $NAME"
+    start-stop-daemon --start --quiet --background --chuid $JBOSS_USER --exec $JBOSS_DIR/bin/standalone.sh
+    log_end_msg $?
+}
+stop() {
+    log_begin_msg "Stoping $DESC: $NAME"
+    start-stop-daemon --start --quiet --background --chuid $JBOSS_USER --exec $JBOSS_DIR/bin/jboss-cli.sh -- --connect command=:shutdown    
+    log_end_msg $?
+}
+restart() {
+    log_begin_msg "Restarting $DESC: $NAME"
+    stop
+    sleep 15
+    start
+}
+reload() {
+    log_begin_msg "Reloading $DESC: $NAME"
+    start-stop-daemon --start --quiet --background --chuid $JBOSS_USER --exec $JBOSS_DIR/bin/jboss-cli.sh -- --connect command=:reload
+    log_end_msg $?
+}
+
+log() {
+    echo "Showing server.log..."
+    tail -500f $JBOSS_DIR/standalone/log/server.log
+}
+
+case "$1" in
+start)
+  start
+;;
+stop)
+  stop
+;;
+restart)
+  restart
+;;
+reload)
+  reload
+;;
+log)
+  log
+;;
+
+*)
+echo "Usage: /etc/init.d/jboss {start|stop|restart|reload|log}"
+exit 1
+;;
+esac
+exit 0
