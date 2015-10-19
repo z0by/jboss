@@ -54,3 +54,7 @@ template "/etc/init.d/jboss" do
     :jboss_home => jboss_home, 
 )
 end
+
+service "jboss" do
+  action :restart
+end
