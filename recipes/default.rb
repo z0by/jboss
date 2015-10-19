@@ -8,3 +8,8 @@
 #
 
 include_recipe "java"
+
+jboss_user = node['jboss']['user']
+jboss_home = node['jboss']['home']
+jboss_version = node['jboss']['version']
+jboss_url = node['jboss']['url']
