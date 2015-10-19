@@ -42,3 +42,15 @@ directory jboss_home do
   owner jboss_user
   mode "0755"
 end
+
+# template init file
+template "/etc/init.d/jboss" do
+  source "init.erb"
+  mode "0755"
+  owner "root"
+  group "root"
+  variables(
+    :jboss_user => jboss_user,
+    :jboss_home => jboss_home, 
+)
+end
