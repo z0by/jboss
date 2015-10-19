@@ -1,0 +1,1 @@
+node.override[:java][:openjdk_packages] = ["openjdk-7-jdk"]
