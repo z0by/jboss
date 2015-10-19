@@ -1,1 +1,6 @@
 node.override[:java][:openjdk_packages] = ["openjdk-7-jdk"]
+
+default['jboss']['user'] = "jboss"
+default['jboss']['home'] = "/usr/local/jboss/share"
+default['jboss']['version'] = "7.1.1"
+default['jboss']['url'] = "http://download.jboss.org/jbossas/7.1/jboss-as-7.1.1.Final/jboss-as-7.1.1.Final.tar.gz"
