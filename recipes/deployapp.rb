@@ -1,8 +1,17 @@
+#
+# Cookbook Name:: jboss
+# Recipe:: deployapp
+#
+# Copyright 2015, Nekhai Vova
+#
+# All rights reserved - Do Not Redistribute
+#
+app_url = node['testapp']['url']
+app_zip = app_url.split('/')[-1] + ".zip"
+app_unzip = app_url.split('/')[-1]
 
-
-remote_file "/tmp/testweb.zip" do
-  source "http://www.cumulogic.com/download/Apps/testweb.zip"
-  #checksum node[:program][:checksum]
+remote_file "/tmp/#{app_zip}" do
+  source app_url
   notifies :run, "bash[put_program]", :immediately
 end
 
@@ -10,17 +19,20 @@ bash "put_program" do
   user "root"
   cwd "/tmp"
   code <<-EOH
-    unzip testweb.zip
-    chown -R jboss:jboss testweb
-    mv /tmp/testweb/testweb.war /usr/local/share/jboss/standalone/deployments/testweb.war.deployed
-    rm -rf testweb.zip
-    #mv testweb /usr/local/share/jboss
-    #chown -R jboss:jboss /usr/local/share/jboss
-    #rm -f jboss-as-7.1.1.Final.tar.gz
+    unzip app_zip
+    chown -R node['jboss']['user']:node['testapp']['url'] app_unzip
+    mv  app_unzip/app_unzip+".war"node['jboss']['home'] + "/standalone/deployments/#{app_unzip}" + ".war.deployed"
+    rm -f app_zip
+    rm -rf app_unzip    
   EOH
   action :nothing
 end
 
-#service "jboss" do
-#  action :restart
-#end
+
+file node['jboss']['home'] + "/standalone/deployments/#{app_unzip}" + ".war.deployed" do
+  action :touch
+end
+
+service "jboss" do
+  action :restart
+end
